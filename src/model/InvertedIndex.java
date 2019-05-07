@@ -30,7 +30,7 @@ public class InvertedIndex {
     }
 
     public void addNewDocument(Document document) {
-        getListOfDocument().add(document);
+        listOfDocument.add(document);
     }
 
     public ArrayList<Document> getListOfDocument() {
@@ -352,7 +352,12 @@ public class InvertedIndex {
 
     public void readDirectory(File dir) {
         File[] listFile = dir.listFiles();
-        int idDoc = 1;
+        int idDoc = 0;
+        if (listOfDocument.size() == 0) {
+            idDoc = listOfDocument.size()+1;
+        }else{
+            idDoc = listOfDocument.size();
+        }
         for (int i = 0; i < listFile.length; i++) {
             Document doc = new Document();
             try {
@@ -361,7 +366,27 @@ public class InvertedIndex {
                 Logger.getLogger(InvertedIndex.class.getName()).log(Level.SEVERE, null, ex);
             }
             addNewDocument(doc);
+            makeDictionaryWithTermNumber();
             idDoc++;
         }
+    }
+    
+    
+    public void readOneFile(File dir) {
+        int idDoc = 0;
+        if (listOfDocument.size() == 0) {
+            idDoc = listOfDocument.size()+1;
+        }else{
+            idDoc = listOfDocument.size();
+        }
+        Document doc = new Document();
+        try {
+            doc.readFile(idDoc, dir);
+        } catch (IOException ex) {
+            Logger.getLogger(InvertedIndex.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        addNewDocument(doc);
+        makeDictionaryWithTermNumber();
+        idDoc++;
     }
 }

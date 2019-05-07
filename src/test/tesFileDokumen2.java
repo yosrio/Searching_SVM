@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import model.Document;
 import model.InvertedIndex;
+import model.SearchingResult;
 
 /**
  *
@@ -33,12 +34,32 @@ public class tesFileDokumen2 {
             File dir = fc.getSelectedFile();
             index.readDirectory(dir);
         }
-
+        
+//        String query = "shipment fire silver"; 
+//        System.out.println("query = " + query);
+//        ArrayList<SearchingResult> hasilCari1 = index.searchTFIDF(query);
+//        for (int i = 0; i < hasilCari1.size(); i++) {
+//            SearchingResult doc = hasilCari1.get(i);
+//            System.out.println("IdDokumen = " + doc.getDocument().getId() + " : " + doc.getDocument().getContent());
+//            System.out.println(doc.getSimilarity());
+//        }
+//
+//        // searching
+//        System.out.println("");
+//        System.out.println("query = " + query);
+//        ArrayList<SearchingResult> hasilCari2 = index.searchCosineSimilarity(query);
+//        for (int i = 0; i < hasilCari2.size(); i++) {
+//            SearchingResult doc = hasilCari2.get(i);
+//            System.out.println("IdDokumen = " + doc.getDocument().getId() + " : " + doc.getDocument().getContent());
+//            System.out.println(doc.getSimilarity());
+//        }
+        
         ArrayList<Document> listDoc = index.getListOfDocument();
         for (int i = 0; i < listDoc.size(); i++) {
             Document doc = listDoc.get(i);
             System.out.println("Content : " + doc.getId());
             System.out.println(doc.getContent());
+            System.out.println("");
         }
     }
 

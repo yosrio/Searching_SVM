@@ -35,6 +35,8 @@ public class Document implements Comparable<Document> {
     private int id;
     private String content;
     private String realContent;
+    private String title;
+    private String author;
 
     public Document() {
     }
@@ -68,6 +70,22 @@ public class Document implements Comparable<Document> {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public String[] getListofTerm() {
@@ -113,6 +131,10 @@ public class Document implements Comparable<Document> {
         char[] chr = new char[4096];
         final StringBuffer buffer = new StringBuffer();
         final FileReader reader = new FileReader(file);
+        String name = file.getName().replace(".txt","");
+        String[] splitter = name.split("-");
+        setAuthor(splitter[0]);
+        setTitle(splitter[1]);
         try {
             while ((len = reader.read(chr)) > 0) {
                 buffer.append(chr, 0, len);
@@ -121,7 +143,7 @@ public class Document implements Comparable<Document> {
             reader.close();
         }
         this.id = idDoc;
-        this.content = buffer.toString();
+        this.content = getAuthor() + " " + getTitle() + "\n" + buffer.toString();
     }
 
     public void removeStopWords(){
