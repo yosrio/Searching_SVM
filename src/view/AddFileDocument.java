@@ -13,12 +13,14 @@ import model.InvertedIndex;
  *
  * @author yosrio
  */
-public class AddFileDocument extends javax.swing.JFrame {
+public class AddFileDocument extends javax.swing.JDialog {
 
-    /**
-     * Creates new form AddFolderDocument
-     */
+    InvertedIndex index;
+    String content;
+    
     public AddFileDocument(java.awt.Frame parent, boolean modal, InvertedIndex index) {
+        super(parent, modal);
+        this.index = index;
         this.setUndecorated(true);
         initComponents();
         positionFrame();
@@ -41,7 +43,7 @@ public class AddFileDocument extends javax.swing.JFrame {
         closeButton = new javax.swing.JButton();
         chooseFileButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setPreferredSize(new java.awt.Dimension(251, 111));
@@ -128,7 +130,7 @@ public class AddFileDocument extends javax.swing.JFrame {
     }//GEN-LAST:event_closeButtonActionPerformed
 
     private void chooseFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseFileButtonActionPerformed
-        
+
     }//GEN-LAST:event_chooseFileButtonActionPerformed
 
     /**

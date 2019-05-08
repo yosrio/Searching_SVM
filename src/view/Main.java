@@ -7,7 +7,9 @@ package view;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 import model.InvertedIndex;
+import model.SearchingResult;
 import model.TableModelDokumen;
 
 /**
@@ -22,6 +24,7 @@ public class Main extends javax.swing.JFrame {
         positionFrame();
         setTitle("Lyrics Searching");
         setResizable(false);
+        index = new InvertedIndex();
     }
 
     /**
@@ -39,7 +42,7 @@ public class Main extends javax.swing.JFrame {
         searchButton = new javax.swing.JButton();
         tablePanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        dokumenTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -53,6 +56,7 @@ public class Main extends javax.swing.JFrame {
         searchingPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         searchingTextField.setText("Masukkan Lirik/Judul/Pengarang");
+        searchingTextField.setToolTipText("");
         searchingTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchingTextFieldActionPerformed(evt);
@@ -63,6 +67,11 @@ public class Main extends javax.swing.JFrame {
         searchButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         searchButton.setForeground(new java.awt.Color(51, 51, 51));
         searchButton.setText("Search");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout searchingPanelLayout = new javax.swing.GroupLayout(searchingPanel);
         searchingPanel.setLayout(searchingPanelLayout);
@@ -87,9 +96,9 @@ public class Main extends javax.swing.JFrame {
 
         tablePanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setBackground(new java.awt.Color(204, 204, 204));
-        jTable1.setForeground(new java.awt.Color(51, 51, 51));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        dokumenTable.setBackground(new java.awt.Color(204, 204, 204));
+        dokumenTable.setForeground(new java.awt.Color(51, 51, 51));
+        dokumenTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -97,7 +106,7 @@ public class Main extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(dokumenTable);
 
         javax.swing.GroupLayout tablePanelLayout = new javax.swing.GroupLayout(tablePanel);
         tablePanel.setLayout(tablePanelLayout);
@@ -224,6 +233,10 @@ public class Main extends javax.swing.JFrame {
         dialog.setVisible(true);
     }//GEN-LAST:event_addFileMenuItemActionPerformed
 
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        searching();
+    }//GEN-LAST:event_searchButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -262,6 +275,7 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem addFileMenuItem;
     private javax.swing.JMenuItem addFolderMenuItem;
+    private javax.swing.JTable dokumenTable;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -269,7 +283,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton searchButton;
     private javax.swing.JPanel searchingPanel;
     private javax.swing.JTextField searchingTextField;
@@ -281,5 +294,13 @@ public class Main extends javax.swing.JFrame {
         int x = layar.width / 2 - this.getSize().width / 2;
         int y = layar.height / 2 - this.getSize().height / 2;
         this.setLocation(x, y);
+    }
+    
+    public void searching() {
+        String query = searchingTextField.getText();
+        ArrayList<SearchingResult> hasilCari = index.searchCosineSimilarity(query);
+        System.out.println(hasilCari.size());
+        model = new TableModelDokumen(hasilCari);
+        dokumenTable.setModel(model);
     }
 }

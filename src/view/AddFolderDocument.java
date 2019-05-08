@@ -7,20 +7,26 @@ package view;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.File;
+import java.util.ArrayList;
+import javax.swing.JFileChooser;
+import model.Document;
 import model.InvertedIndex;
 
 /**
  *
  * @author yosrio
  */
-public class AddFolderDocument extends javax.swing.JFrame {
+public class AddFolderDocument extends javax.swing.JDialog {
 
-    /**
-     * Creates new form AddFolderDocument
-     */
+    InvertedIndex index;
+    String content;
+    
     public AddFolderDocument(java.awt.Frame parent, boolean modal, InvertedIndex index) {
+        super(parent, modal);
         this.setUndecorated(true);
         initComponents();
+        this.index = index;
         positionFrame();
         setTitle("Add Document");
         setResizable(false);
@@ -41,7 +47,7 @@ public class AddFolderDocument extends javax.swing.JFrame {
         closeButton = new javax.swing.JButton();
         chooseFileButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setPreferredSize(new java.awt.Dimension(251, 111));
@@ -129,7 +135,7 @@ public class AddFolderDocument extends javax.swing.JFrame {
     }//GEN-LAST:event_closeButtonActionPerformed
 
     private void chooseFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseFileButtonActionPerformed
-        
+        addDocument();
     }//GEN-LAST:event_chooseFileButtonActionPerformed
 
     /**
@@ -149,5 +155,23 @@ public class AddFolderDocument extends javax.swing.JFrame {
         int x = layar.width / 2 - this.getSize().width / 2;
         int y = layar.height / 2 - this.getSize().height / 2;
         this.setLocation(x, y);
+    }
+    
+    public void addDocument() {
+        JFileChooser fc = new JFileChooser();
+        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        
+        int returnVal = fc.showOpenDialog(null);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File dir = fc.getSelectedFile();
+            index.readDirectory(dir);
+        }
+        
+        ArrayList<Document> listDoc = index.getListOfDocument();
+        for (int i = 0; i < listDoc.size(); i++) {
+            Document doc = listDoc.get(i);
+            System.out.println("Content : " + doc.getId());
+            System.out.println(doc.getContent());
+        }
     }
 }
