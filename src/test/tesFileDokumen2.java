@@ -26,15 +26,19 @@ public class tesFileDokumen2 {
      */
     public static void main(String[] args) throws IOException {
         InvertedIndex index = new InvertedIndex();
-        JFileChooser fc = new JFileChooser();
-        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-
-        int returnVal = fc.showOpenDialog(null);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            File dir = fc.getSelectedFile();
-            index.readDirectory(dir);
-        }
-        
+//        JFileChooser fc = new JFileChooser();
+//        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+//
+//        int returnVal = fc.showOpenDialog(null);
+//        if (returnVal == JFileChooser.APPROVE_OPTION) {
+//            File dir = fc.getSelectedFile();
+//            index.readDirectory(dir);
+//        }
+        File dir = new File("F:\\smstr 6\\SearchingSystem\\dokumen");
+        index.readDirectory(dir);
+        String tempString = "armada";
+        int result2 = index.getDocFreq(tempString);
+        System.out.println("Number of Doc with " + tempString + " is " + result2);
 //        String query = "shipment fire silver"; 
 //        System.out.println("query = " + query);
 //        ArrayList<SearchingResult> hasilCari1 = index.searchTFIDF(query);
@@ -54,13 +58,13 @@ public class tesFileDokumen2 {
 //            System.out.println(doc.getSimilarity());
 //        }
         
-        ArrayList<Document> listDoc = index.getListOfDocument();
-        for (int i = 0; i < listDoc.size(); i++) {
-            Document doc = listDoc.get(i);
-            System.out.println("Content : " + doc.getId());
-            System.out.println(doc.getContent());
-            System.out.println("");
-        }
+//        ArrayList<Document> listDoc = index.getListOfDocument();
+//        for (int i = 0; i < listDoc.size(); i++) {
+//            Document doc = listDoc.get(i);
+//            System.out.println("Content : " + doc.getId());
+//            System.out.println(doc.getContent());
+//            System.out.println("");
+//        }
     }
 
 }

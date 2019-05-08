@@ -297,23 +297,31 @@ public class InvertedIndex {
     }
 
     public double getLengthOfPosting(ArrayList<Posting> posting) {
-        double result = 0.0;
+//        double result = 0.0;
+//        for (int i = 0; i < posting.size(); i++) {
+//            Posting post = posting.get(i);
+//            double weight = post.getWeight();
+//            weight = weight * weight;
+//            result = result + weight;
+//        }
+//        return Math.sqrt(result);
+        double tempPost = 0;
         for (int i = 0; i < posting.size(); i++) {
-            Posting post = posting.get(i);
-            double weight = post.getWeight();
-            weight = weight * weight;
-            result = result + weight;
+            tempPost += Math.pow(posting.get(i).getWeight(), 2);
         }
-        return Math.sqrt(result);
+        return Math.sqrt(tempPost);
     }
 
     public double getCosineSimilarity(ArrayList<Posting> posting, ArrayList<Posting> posting1) {
-        double hasilDotProduct = getInnerProduct(posting, posting1);
-        double panjang_posting = getLengthOfPosting(posting);
-        double panjang_posting1 = getLengthOfPosting(posting1);
-        double result
-                = hasilDotProduct / Math.sqrt(panjang_posting * panjang_posting1);
-        return result;
+//        double hasilDotProduct = getInnerProduct(posting, posting1);
+//        double panjang_posting = getLengthOfPosting(posting);
+//        double panjang_posting1 = getLengthOfPosting(posting1);
+//        double result = hasilDotProduct / Math.sqrt(panjang_posting * panjang_posting1);
+//        return result;
+        double ip = getInnerProduct(posting, posting1);
+        double hasil = 0;
+        hasil = ip / (getLengthOfPosting(posting) * getLengthOfPosting(posting1));
+        return hasil;
     }
 
     public ArrayList<SearchingResult> searchTFIDF(String query) {

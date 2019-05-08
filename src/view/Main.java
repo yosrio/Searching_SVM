@@ -7,6 +7,7 @@ package view;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.File;
 import java.util.ArrayList;
 import model.InvertedIndex;
 import model.SearchingResult;
@@ -17,14 +18,17 @@ import model.TableModelDokumen;
  * @author yosrio
  */
 public class Main extends javax.swing.JFrame {
+
     InvertedIndex index;
     TableModelDokumen model;
+
     public Main() {
         initComponents();
         positionFrame();
         setTitle("Lyrics Searching");
         setResizable(false);
         index = new InvertedIndex();
+        loadData();
     }
 
     /**
@@ -50,6 +54,7 @@ public class Main extends javax.swing.JFrame {
         fileMenu = new javax.swing.JMenu();
         addFolderMenuItem = new javax.swing.JMenuItem();
         addFileMenuItem = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -201,6 +206,9 @@ public class Main extends javax.swing.JFrame {
         });
         fileMenu.add(addFileMenuItem);
 
+        jMenuItem1.setText("Show Lyrics");
+        fileMenu.add(jMenuItem1);
+
         jMenuBar1.add(fileMenu);
 
         setJMenuBar(jMenuBar1);
@@ -280,6 +288,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -288,19 +297,24 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField searchingTextField;
     private javax.swing.JPanel tablePanel;
     // End of variables declaration//GEN-END:variables
-    
+
     public void positionFrame() {
         Dimension layar = Toolkit.getDefaultToolkit().getScreenSize();
         int x = layar.width / 2 - this.getSize().width / 2;
         int y = layar.height / 2 - this.getSize().height / 2;
         this.setLocation(x, y);
     }
-    
+
     public void searching() {
         String query = searchingTextField.getText();
         ArrayList<SearchingResult> hasilCari = index.searchCosineSimilarity(query);
         System.out.println(hasilCari.size());
         model = new TableModelDokumen(hasilCari);
         dokumenTable.setModel(model);
+    }
+
+    public void loadData() {
+        File dir = new File("F:\\smstr 6\\SearchingSystem\\dokumen");
+        index.readDirectory(dir);
     }
 }
