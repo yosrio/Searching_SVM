@@ -36,17 +36,17 @@ public class tesFileDokumen2 {
 //        }
         File dir = new File("F:\\smstr 6\\SearchingSystem\\dokumen");
         index.readDirectory(dir);
-        String tempString = "armada";
-        int result2 = index.getDocFreq(tempString);
-        System.out.println("Number of Doc with " + tempString + " is " + result2);
-//        String query = "shipment fire silver"; 
-//        System.out.println("query = " + query);
-//        ArrayList<SearchingResult> hasilCari1 = index.searchTFIDF(query);
-//        for (int i = 0; i < hasilCari1.size(); i++) {
-//            SearchingResult doc = hasilCari1.get(i);
-//            System.out.println("IdDokumen = " + doc.getDocument().getId() + " : " + doc.getDocument().getContent());
-//            System.out.println(doc.getSimilarity());
-//        }
+//        String tempString = "andmesh";
+//        int result2 = index.getDocFreq(tempString);
+//        System.out.println("Number of Doc with " + tempString + " is " + result2);
+        String query = "andmesh";
+        System.out.println("query = " + query);
+        ArrayList<SearchingResult> hasilCari1 = index.searchTFIDF(query);
+        for (int i = 0; i < hasilCari1.size(); i++) {
+            SearchingResult doc = hasilCari1.get(i);
+            System.out.println("IdDokumen = " + doc.getDocument().getId() + " : " + doc.getDocument().getContent());
+            System.out.println(doc.getSimilarity());
+        }
 //
 //        // searching
 //        System.out.println("");

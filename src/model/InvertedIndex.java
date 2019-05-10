@@ -313,11 +313,11 @@ public class InvertedIndex {
     }
 
     public double getCosineSimilarity(ArrayList<Posting> posting, ArrayList<Posting> posting1) {
-//        double hasilDotProduct = getInnerProduct(posting, posting1);
-//        double panjang_posting = getLengthOfPosting(posting);
-//        double panjang_posting1 = getLengthOfPosting(posting1);
-//        double result = hasilDotProduct / Math.sqrt(panjang_posting * panjang_posting1);
-//        return result;
+//        double atas = getInnerProduct(posting, posting1);
+//        double panjangPosting = getLengthOfPosting(posting);
+//        double panjangPosting1 = getLengthOfPosting(posting1);
+//        double hasil = atas / (Math.sqrt(panjangPosting * panjangPosting1));
+//        return hasil;
         double ip = getInnerProduct(posting, posting1);
         double hasil = 0;
         hasil = ip / (getLengthOfPosting(posting) * getLengthOfPosting(posting1));
@@ -362,8 +362,8 @@ public class InvertedIndex {
         File[] listFile = dir.listFiles();
         int idDoc = 0;
         if (listOfDocument.size() == 0) {
-            idDoc = listOfDocument.size()+1;
-        }else{
+            idDoc = listOfDocument.size() + 1;
+        } else {
             idDoc = listOfDocument.size();
         }
         for (int i = 0; i < listFile.length; i++) {
@@ -374,17 +374,16 @@ public class InvertedIndex {
                 Logger.getLogger(InvertedIndex.class.getName()).log(Level.SEVERE, null, ex);
             }
             addNewDocument(doc);
-            makeDictionaryWithTermNumber();
             idDoc++;
         }
+        makeDictionaryWithTermNumber();
     }
-    
-    
+
     public void readOneFile(File dir) {
         int idDoc = 0;
         if (listOfDocument.size() == 0) {
-            idDoc = listOfDocument.size()+1;
-        }else{
+            idDoc = listOfDocument.size() + 1;
+        } else {
             idDoc = listOfDocument.size();
         }
         Document doc = new Document();
