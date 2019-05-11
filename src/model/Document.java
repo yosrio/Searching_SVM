@@ -88,6 +88,14 @@ public class Document implements Comparable<Document> {
         this.author = author;
     }
 
+    public String getRealContent() {
+        return realContent;
+    }
+
+    public void setRealContent(String realContent) {
+        this.realContent = realContent;
+    }
+
     public String[] getListofTerm() {
         String value = this.getContent();
         value = value.replaceAll("[.,?!]", "");
@@ -145,6 +153,7 @@ public class Document implements Comparable<Document> {
         }
         this.id = idDoc;
         this.content = getAuthor() + " " + getTitle() + "\n" + buffer.toString();
+        this.realContent = buffer.toString();
     }
 
     public void removeStopWords(){
