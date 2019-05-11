@@ -50,11 +50,15 @@ InvertedIndex index;
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel5 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        findIcon = new javax.swing.JLabel();
+        addFileDocument = new javax.swing.JLabel();
+        addFileIcon = new javax.swing.JLabel();
+        addFileIcon1 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        findIcon1 = new javax.swing.JLabel();
+        addFolderDocument = new javax.swing.JLabel();
+        addFolderIcon = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        addFolderDocument1 = new javax.swing.JLabel();
+        addFolderIcon1 = new javax.swing.JLabel();
         exitIcon = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -96,50 +100,81 @@ InvertedIndex index;
         jPanel5.setBackground(new java.awt.Color(102, 176, 228));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Add File Document");
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        addFileDocument.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        addFileDocument.setForeground(new java.awt.Color(255, 255, 255));
+        addFileDocument.setText("Add File Document");
+        addFileDocument.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
+                addFileDocumentMouseClicked(evt);
             }
         });
-        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 11, 130, 26));
+        jPanel5.add(addFileDocument, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 11, 130, 26));
 
-        findIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-add-file-26.png"))); // NOI18N
-        findIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+        addFileIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-help-13.png"))); // NOI18N
+        addFileIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                findIconMouseClicked(evt);
+                addFileIconMouseClicked(evt);
             }
         });
-        jPanel5.add(findIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 11, -1, -1));
+        jPanel5.add(addFileIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, -1, -1));
 
-        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 204, 50));
+        addFileIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-add-file-26.png"))); // NOI18N
+        addFileIcon1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addFileIcon1MouseClicked(evt);
+            }
+        });
+        jPanel5.add(addFileIcon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 11, -1, -1));
+
+        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 220, 50));
 
         jPanel6.setBackground(new java.awt.Color(102, 176, 228));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Add Folder Document");
-        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+        addFolderDocument.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        addFolderDocument.setForeground(new java.awt.Color(255, 255, 255));
+        addFolderDocument.setText("Show Lyrics");
+        addFolderDocument.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel5MouseClicked(evt);
+                addFolderDocumentMouseClicked(evt);
             }
         });
-        jPanel6.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 11, 150, 26));
+        jPanel6.add(addFolderDocument, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 11, 150, 26));
 
-        findIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-add-folder-26.png"))); // NOI18N
-        findIcon1.addMouseListener(new java.awt.event.MouseAdapter() {
+        addFolderIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-show-property-26.png"))); // NOI18N
+        addFolderIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                findIcon1MouseClicked(evt);
+                addFolderIconMouseClicked(evt);
             }
         });
-        jPanel6.add(findIcon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 11, -1, -1));
+        jPanel6.add(addFolderIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 11, -1, -1));
 
-        jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 204, 50));
+        jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 220, 50));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 574));
+        jPanel7.setBackground(new java.awt.Color(102, 176, 228));
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        addFolderDocument1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        addFolderDocument1.setForeground(new java.awt.Color(255, 255, 255));
+        addFolderDocument1.setText("Add Folder Document");
+        addFolderDocument1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addFolderDocument1MouseClicked(evt);
+            }
+        });
+        jPanel7.add(addFolderDocument1, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 11, 150, 26));
+
+        addFolderIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-add-folder-26.png"))); // NOI18N
+        addFolderIcon1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addFolderIcon1MouseClicked(evt);
+            }
+        });
+        jPanel7.add(addFolderIcon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 11, -1, -1));
+
+        jPanel2.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 220, 50));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 574));
 
         exitIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-delete-32.png"))); // NOI18N
         exitIcon.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -164,7 +199,7 @@ InvertedIndex index;
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Search Lyrics: ");
-        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 26, -1, -1));
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, -1, -1));
 
         searchingTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         searchingTextField.setForeground(new java.awt.Color(102, 176, 228));
@@ -183,7 +218,7 @@ InvertedIndex index;
                 searchingTextFieldKeyReleased(evt);
             }
         });
-        jPanel3.add(searchingTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 24, 408, 30));
+        jPanel3.add(searchingTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 24, 360, 30));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -268,7 +303,7 @@ InvertedIndex index;
         this.setLocation(x - xMouse, y - yMouse);
     }//GEN-LAST:event_jPanel1MouseDragged
 
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+    private void addFileDocumentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addFileDocumentMouseClicked
         JFileChooser fc = new JFileChooser();
         
         int returnVal = fc.showOpenDialog(this);
@@ -276,12 +311,17 @@ InvertedIndex index;
             File dir = fc.getSelectedFile();
             index.readOneFile(dir);
         }
-    }//GEN-LAST:event_jLabel3MouseClicked
+    }//GEN-LAST:event_addFileDocumentMouseClicked
 
-    private void findIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_findIconMouseClicked
-        AddFolderDocument dialog = new AddFolderDocument(this, true, index);
-        dialog.setVisible(true);
-    }//GEN-LAST:event_findIconMouseClicked
+    private void addFileIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addFileIconMouseClicked
+        JFileChooser fc = new JFileChooser();
+        
+        int returnVal = fc.showOpenDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File dir = fc.getSelectedFile();
+            index.readOneFile(dir);
+        }
+    }//GEN-LAST:event_addFileIconMouseClicked
 
     private void searchingTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchingTextFieldActionPerformed
         searching();
@@ -295,7 +335,7 @@ InvertedIndex index;
         // TODO add your handling code here:
     }//GEN-LAST:event_searchingTextFieldKeyReleased
 
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+    private void addFolderDocumentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addFolderDocumentMouseClicked
         JFileChooser fc = new JFileChooser();
         fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         
@@ -304,11 +344,30 @@ InvertedIndex index;
             File dir = fc.getSelectedFile();
             index.readDirectory(dir);
         }
-    }//GEN-LAST:event_jLabel5MouseClicked
+    }//GEN-LAST:event_addFolderDocumentMouseClicked
 
-    private void findIcon1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_findIcon1MouseClicked
+    private void addFolderIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addFolderIconMouseClicked
+        JFileChooser fc = new JFileChooser();
+        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        
+        int returnVal = fc.showOpenDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File dir = fc.getSelectedFile();
+            index.readDirectory(dir);
+        }
+    }//GEN-LAST:event_addFolderIconMouseClicked
+
+    private void addFolderDocument1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addFolderDocument1MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_findIcon1MouseClicked
+    }//GEN-LAST:event_addFolderDocument1MouseClicked
+
+    private void addFolderIcon1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addFolderIcon1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addFolderIcon1MouseClicked
+
+    private void addFileIcon1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addFileIcon1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addFileIcon1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -346,21 +405,25 @@ InvertedIndex index;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel addFileDocument;
+    private javax.swing.JLabel addFileIcon;
+    private javax.swing.JLabel addFileIcon1;
+    private javax.swing.JLabel addFolderDocument;
+    private javax.swing.JLabel addFolderDocument1;
+    private javax.swing.JLabel addFolderIcon;
+    private javax.swing.JLabel addFolderIcon1;
     private javax.swing.JTable dokumenTable;
     private javax.swing.JLabel exitIcon;
-    private javax.swing.JLabel findIcon;
-    private javax.swing.JLabel findIcon1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField searchingTextField;

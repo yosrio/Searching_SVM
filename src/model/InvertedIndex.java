@@ -254,8 +254,8 @@ public class InvertedIndex {
                 String tempTerm = result.get(i).getTerm();
                 double idf = getInverseDocFreq(tempTerm);
                 int tf = result.get(i).getNumberOfTerm();
-                double bobot = tf * idf;
-                result.get(i).setWeight(bobot);
+                double w = tf * idf;
+                result.get(i).setWeight(w);
             }
             Collections.sort(result);
         } else {
@@ -289,38 +289,24 @@ public class InvertedIndex {
             String tempTerm = result.get(i).getTerm();
             double idf = getInverseDocFreq(tempTerm);
             int tf = result.get(i).getNumberOfTerm();
-            double bobot = tf * idf;
-            result.get(i).setWeight(bobot);
+            double w = tf * idf;
+            result.get(i).setWeight(w);
         }
         Collections.sort(result);
         return result;
     }
 
     public double getLengthOfPosting(ArrayList<Posting> posting) {
-//        double result = 0.0;
-//        for (int i = 0; i < posting.size(); i++) {
-//            Posting post = posting.get(i);
-//            double weight = post.getWeight();
-//            weight = weight * weight;
-//            result = result + weight;
-//        }
-//        return Math.sqrt(result);
-        double tempPost = 0;
+        double result = 0;
         for (int i = 0; i < posting.size(); i++) {
-            tempPost += Math.pow(posting.get(i).getWeight(), 2);
+            result += Math.pow(posting.get(i).getWeight(), 2);
         }
-        return Math.sqrt(tempPost);
+        return Math.sqrt(result);
     }
 
     public double getCosineSimilarity(ArrayList<Posting> posting, ArrayList<Posting> posting1) {
-//        double atas = getInnerProduct(posting, posting1);
-//        double panjangPosting = getLengthOfPosting(posting);
-//        double panjangPosting1 = getLengthOfPosting(posting1);
-//        double hasil = atas / (Math.sqrt(panjangPosting * panjangPosting1));
-//        return hasil;
-        double ip = getInnerProduct(posting, posting1);
-        double hasil = 0;
-        hasil = ip / (getLengthOfPosting(posting) * getLengthOfPosting(posting1));
+        double innerProduct = getInnerProduct(posting, posting1);
+        double hasil = innerProduct / (Math.sqrt(getLengthOfPosting(posting) * getLengthOfPosting(posting1)));
         return hasil;
     }
 
