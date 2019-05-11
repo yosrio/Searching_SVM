@@ -7,6 +7,11 @@ package view;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.File;
+import java.util.ArrayList;
+import model.InvertedIndex;
+import model.SearchingResult;
+import model.TableModelDokumen;
 
 /**
  *
@@ -17,7 +22,8 @@ public class Home extends javax.swing.JFrame {
     int xMouse;
 
     int yMouse;
-
+InvertedIndex index;
+    TableModelDokumen model;
     /**
      * Creates new form Home
      */
@@ -25,6 +31,8 @@ public class Home extends javax.swing.JFrame {
         setUndecorated(true);
         initComponents();
         positionFrame();
+        index = new InvertedIndex();
+        loadData();
     }
 
     /**
@@ -40,11 +48,20 @@ public class Home extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel1 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        findIcon = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        findIcon1 = new javax.swing.JLabel();
+        exitIcon = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        searchingTextField = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        dokumenTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,73 +76,130 @@ public class Home extends javax.swing.JFrame {
                 jPanel1MousePressed(evt);
             }
         });
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(102, 176, 228));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.setName(""); // NOI18N
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Tango Lyrics");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 25, -1, -1));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 65, 184, 10));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel2)
-                .addContainerGap(44, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSeparator1)
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jPanel5.setBackground(new java.awt.Color(102, 176, 228));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-delete-32.png"))); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Add File Document");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 11, 130, 26));
+
+        findIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-add-file-26.png"))); // NOI18N
+        findIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                findIconMouseClicked(evt);
+            }
+        });
+        jPanel5.add(findIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 11, -1, -1));
+
+        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 204, 50));
+
+        jPanel6.setBackground(new java.awt.Color(102, 176, 228));
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Add Folder Document");
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
+        jPanel6.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 11, 150, 26));
+
+        findIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-add-folder-26.png"))); // NOI18N
+        findIcon1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                findIcon1MouseClicked(evt);
+            }
+        });
+        jPanel6.add(findIcon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 11, -1, -1));
+
+        jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 204, 50));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 574));
+
+        exitIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-delete-32.png"))); // NOI18N
+        exitIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitIconMouseClicked(evt);
+            }
+        });
+        exitIcon.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                exitIconKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                exitIconKeyReleased(evt);
+            }
+        });
+        jPanel1.add(exitIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(795, 11, -1, -1));
+
+        jPanel3.setBackground(new java.awt.Color(82, 179, 217));
+        jPanel3.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Search Lyrics: ");
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 26, -1, -1));
+
+        searchingTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        searchingTextField.setForeground(new java.awt.Color(102, 176, 228));
+        searchingTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        searchingTextField.setCaretColor(new java.awt.Color(102, 176, 228));
+        searchingTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        searchingTextField.setMinimumSize(new java.awt.Dimension(0, 17));
+        searchingTextField.setPreferredSize(new java.awt.Dimension(0, 17));
+        searchingTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchingTextFieldActionPerformed(evt);
+            }
+        });
+        searchingTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchingTextFieldKeyReleased(evt);
+            }
+        });
+        jPanel3.add(searchingTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 24, 408, 30));
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(102, 176, 228));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-search-26(1).png"))); // NOI18N
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
             }
         });
-        jLabel1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jLabel1KeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jLabel1KeyReleased(evt);
-            }
-        });
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 26, 30, 30));
 
-        jPanel3.setBackground(new java.awt.Color(82, 179, 217));
-        jPanel3.setForeground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 757, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 142, Short.MAX_VALUE)
-        );
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 680, 120));
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        dokumenTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -133,8 +207,8 @@ public class Home extends javax.swing.JFrame {
 
             }
         ));
-        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setViewportView(jTable1);
+        dokumenTable.setGridColor(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setViewportView(dokumenTable);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -149,41 +223,11 @@ public class Home extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(132, 132, 132))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(103, 103, 103))
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(261, 261, 261))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(269, 269, 269))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(175, 175, 175)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 331, Short.MAX_VALUE)
-                .addContainerGap())
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, -1, 360));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -193,26 +237,24 @@ public class Home extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 563, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel1KeyReleased
+    private void exitIconKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_exitIconKeyReleased
 
-    }//GEN-LAST:event_jLabel1KeyReleased
+    }//GEN-LAST:event_exitIconKeyReleased
 
-    private void jLabel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel1KeyPressed
+    private void exitIconKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_exitIconKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel1KeyPressed
+    }//GEN-LAST:event_exitIconKeyPressed
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+    private void exitIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitIconMouseClicked
         this.dispose();
         System.exit(0);
-    }//GEN-LAST:event_jLabel1MouseClicked
+    }//GEN-LAST:event_exitIconMouseClicked
 
     private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
         xMouse  = evt.getX();
@@ -224,6 +266,36 @@ public class Home extends javax.swing.JFrame {
         int y = evt.getYOnScreen();
         this.setLocation(x - xMouse, y - yMouse);
     }//GEN-LAST:event_jPanel1MouseDragged
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        AddFolderDocument dialog = new AddFolderDocument(this, true, index);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void findIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_findIconMouseClicked
+        AddFolderDocument dialog = new AddFolderDocument(this, true, index);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_findIconMouseClicked
+
+    private void searchingTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchingTextFieldActionPerformed
+        searching();
+    }//GEN-LAST:event_searchingTextFieldActionPerformed
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        searching();
+    }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void searchingTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchingTextFieldKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchingTextFieldKeyReleased
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void findIcon1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_findIcon1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_findIcon1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -261,15 +333,24 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable dokumenTable;
+    private javax.swing.JLabel exitIcon;
+    private javax.swing.JLabel findIcon;
+    private javax.swing.JLabel findIcon1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField searchingTextField;
     // End of variables declaration//GEN-END:variables
 
     public void positionFrame() {
@@ -277,5 +358,18 @@ public class Home extends javax.swing.JFrame {
         int x = layar.width / 2 - this.getSize().width / 2;
         int y = layar.height / 2 - this.getSize().height / 2;
         this.setLocation(x, y);
+    }
+    
+    public void searching() {
+        String query = searchingTextField.getText();
+        ArrayList<SearchingResult> hasilCari = index.searchCosineSimilarity(query);
+        System.out.println(hasilCari.size());
+        model = new TableModelDokumen(hasilCari);
+        dokumenTable.setModel(model);
+    }
+
+    public void loadData() {
+        File dir = new File("F:\\smstr 6\\SearchingSystem\\dokumen");
+        index.readDirectory(dir);
     }
 }
