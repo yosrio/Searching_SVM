@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.File;
 import java.util.ArrayList;
+import javax.swing.JFileChooser;
 import model.InvertedIndex;
 import model.SearchingResult;
 import model.TableModelDokumen;
@@ -268,8 +269,13 @@ InvertedIndex index;
     }//GEN-LAST:event_jPanel1MouseDragged
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        AddFolderDocument dialog = new AddFolderDocument(this, true, index);
-        dialog.setVisible(true);
+        JFileChooser fc = new JFileChooser();
+        
+        int returnVal = fc.showOpenDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File dir = fc.getSelectedFile();
+            index.readOneFile(dir);
+        }
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void findIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_findIconMouseClicked
@@ -290,7 +296,14 @@ InvertedIndex index;
     }//GEN-LAST:event_searchingTextFieldKeyReleased
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        // TODO add your handling code here:
+        JFileChooser fc = new JFileChooser();
+        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        
+        int returnVal = fc.showOpenDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File dir = fc.getSelectedFile();
+            index.readDirectory(dir);
+        }
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void findIcon1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_findIcon1MouseClicked
@@ -363,7 +376,6 @@ InvertedIndex index;
     public void searching() {
         String query = searchingTextField.getText();
         ArrayList<SearchingResult> hasilCari = index.searchCosineSimilarity(query);
-        System.out.println(hasilCari.size());
         model = new TableModelDokumen(hasilCari);
         dokumenTable.setModel(model);
     }

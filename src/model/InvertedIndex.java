@@ -364,7 +364,7 @@ public class InvertedIndex {
         if (listOfDocument.size() == 0) {
             idDoc = listOfDocument.size() + 1;
         } else {
-            idDoc = listOfDocument.size();
+            idDoc = listOfDocument.size() + 1;
         }
         for (int i = 0; i < listFile.length; i++) {
             Document doc = new Document();
@@ -383,12 +383,15 @@ public class InvertedIndex {
         int idDoc = 0;
         if (listOfDocument.size() == 0) {
             idDoc = listOfDocument.size() + 1;
+            System.out.println("salah");
         } else {
-            idDoc = listOfDocument.size();
+            idDoc = listOfDocument.size() + 1;
+            System.out.println("benar");
         }
         Document doc = new Document();
         try {
             doc.readFile(idDoc, dir);
+            System.out.println(idDoc);
         } catch (IOException ex) {
             Logger.getLogger(InvertedIndex.class.getName()).log(Level.SEVERE, null, ex);
         }
