@@ -11,26 +11,27 @@ import java.io.File;
 import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import model.Document;
 import model.InvertedIndex;
 import model.SearchingResult;
-import model.TableModelDokumen;
+import model.TableModelData;
 
 /**
  *
  * @author yosrio
  */
-public class Home extends javax.swing.JFrame {
+public class ShowLyrics extends javax.swing.JFrame {
 
     int xMouse;
     int yMouse;
     InvertedIndex index;
-    TableModelDokumen model;
+    TableModelData model;
     
-    public Home() {
+    public ShowLyrics() {
         setUndecorated(true);
         initComponents();
         positionFrame();
-        index = new InvertedIndex();
+        this.index = new InvertedIndex();
         index = getIndex();
         loadData();
     }
@@ -42,7 +43,6 @@ public class Home extends javax.swing.JFrame {
     public void setIndex(InvertedIndex index) {
         this.index = index;
     }
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -72,10 +72,6 @@ public class Home extends javax.swing.JFrame {
         addFileDocument = new javax.swing.JLabel();
         addFileIcon1 = new javax.swing.JLabel();
         exitIcon = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        searchingTextField = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         dokumenTable = new javax.swing.JTable();
@@ -109,7 +105,7 @@ public class Home extends javax.swing.JFrame {
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 65, 184, 10));
 
-        jPanel6.setBackground(new java.awt.Color(102, 176, 228));
+        jPanel6.setBackground(new java.awt.Color(197, 239, 247));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         showLyrics.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -178,7 +174,7 @@ public class Home extends javax.swing.JFrame {
 
         jPanel2.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 520, 100, 50));
 
-        jPanel9.setBackground(new java.awt.Color(197, 239, 247));
+        jPanel9.setBackground(new java.awt.Color(102, 176, 228));
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         searchingLyrics.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -242,47 +238,6 @@ public class Home extends javax.swing.JFrame {
         });
         jPanel1.add(exitIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(795, 11, -1, -1));
 
-        jPanel3.setBackground(new java.awt.Color(82, 179, 217));
-        jPanel3.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Search Lyrics: ");
-        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, -1, -1));
-
-        searchingTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        searchingTextField.setForeground(new java.awt.Color(102, 176, 228));
-        searchingTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        searchingTextField.setCaretColor(new java.awt.Color(102, 176, 228));
-        searchingTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        searchingTextField.setMinimumSize(new java.awt.Dimension(0, 17));
-        searchingTextField.setPreferredSize(new java.awt.Dimension(0, 17));
-        searchingTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchingTextFieldActionPerformed(evt);
-            }
-        });
-        searchingTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                searchingTextFieldKeyReleased(evt);
-            }
-        });
-        jPanel3.add(searchingTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 24, 360, 30));
-
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(102, 176, 228));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-search-26(1).png"))); // NOI18N
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
-            }
-        });
-        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 26, 30, 30));
-
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 680, 120));
-
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
         dokumenTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -290,7 +245,7 @@ public class Home extends javax.swing.JFrame {
 
             },
             new String [] {
-
+                "Id Document", "Title"
             }
         ));
         dokumenTable.setGridColor(new java.awt.Color(255, 255, 255));
@@ -307,18 +262,18 @@ public class Home extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(103, 103, 103))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, -1, 360));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 600, 510));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -369,28 +324,12 @@ public class Home extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_addFileDocumentMouseClicked
 
-    private void searchingTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchingTextFieldActionPerformed
-        searching();
-    }//GEN-LAST:event_searchingTextFieldActionPerformed
-
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        searching();
-    }//GEN-LAST:event_jLabel1MouseClicked
-
-    private void searchingTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchingTextFieldKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchingTextFieldKeyReleased
-
     private void showLyricsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showLyricsMouseClicked
-        ShowLyrics show = new ShowLyrics();
-        show.setIndex(index);
-        show.setVisible(true);
+        
     }//GEN-LAST:event_showLyricsMouseClicked
 
     private void showLyricsIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showLyricsIconMouseClicked
-        ShowLyrics show = new ShowLyrics();
-        show.setIndex(index);
-        show.setVisible(true);
+        
     }//GEN-LAST:event_showLyricsIconMouseClicked
 
     private void addFolderDocumentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addFolderDocumentMouseClicked
@@ -448,11 +387,15 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_showLyricsIcon1MouseClicked
 
     private void searchingLyricsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchingLyricsMouseClicked
-        // TODO add your handling code here:
+        Home show = new Home();
+        show.setIndex(index);
+        show.setVisible(true);
     }//GEN-LAST:event_searchingLyricsMouseClicked
 
     private void searchingIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchingIconMouseClicked
-       
+        Home show = new Home();
+        show.setIndex(index);
+        show.setVisible(true);
     }//GEN-LAST:event_searchingIconMouseClicked
 
     /**
@@ -472,20 +415,21 @@ public class Home extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShowLyrics.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShowLyrics.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShowLyrics.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShowLyrics.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Home().setVisible(true);
+                new ShowLyrics().setVisible(true);
             }
         });
     }
@@ -497,12 +441,9 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel addFolderIcon;
     private javax.swing.JTable dokumenTable;
     private javax.swing.JLabel exitIcon;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -513,7 +454,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel searchingIcon;
     private javax.swing.JLabel searchingLyrics;
-    private javax.swing.JTextField searchingTextField;
     private javax.swing.JLabel showLyrics;
     private javax.swing.JLabel showLyrics1;
     private javax.swing.JLabel showLyricsIcon;
@@ -526,16 +466,12 @@ public class Home extends javax.swing.JFrame {
         int y = layar.height / 2 - this.getSize().height / 2;
         this.setLocation(x, y);
     }
-    
-    public void searching() {
-        String query = searchingTextField.getText();
-        ArrayList<SearchingResult> hasilCari = index.searchCosineSimilarity(query);
-        model = new TableModelDokumen(hasilCari);
-        dokumenTable.setModel(model);
-    }
 
     public void loadData() {
         File dir = new File("F:\\smstr 6\\SearchingSystem\\dokumen");
         index.readDirectory(dir);
+        ArrayList<Document> hasilCari = index.getListOfDocument();
+        model = new TableModelData(hasilCari);
+        dokumenTable.setModel(model);
     }
 }

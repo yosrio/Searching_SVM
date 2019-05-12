@@ -346,12 +346,7 @@ public class InvertedIndex {
 
     public void readDirectory(File dir) {
         File[] listFile = dir.listFiles();
-        int idDoc = 0;
-        if (listOfDocument.size() == 0) {
-            idDoc = listOfDocument.size() + 1;
-        } else {
-            idDoc = listOfDocument.size() + 1;
-        }
+        int idDoc = listOfDocument.size() + 1;
         for (int i = 0; i < listFile.length; i++) {
             Document doc = new Document();
             try {
@@ -366,14 +361,7 @@ public class InvertedIndex {
     }
 
     public void readOneFile(File dir) {
-        int idDoc = 0;
-        if (listOfDocument.size() == 0) {
-            idDoc = listOfDocument.size() + 1;
-            System.out.println("salah");
-        } else {
-            idDoc = listOfDocument.size() + 1;
-            System.out.println("benar");
-        }
+        int idDoc = listOfDocument.size() + 1;
         Document doc = new Document();
         try {
             doc.readFile(idDoc, dir);

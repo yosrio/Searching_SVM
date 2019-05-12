@@ -12,9 +12,9 @@ import java.awt.Toolkit;
  *
  * @author yosrio
  */
-public class ShowLyricsInTable extends javax.swing.JDialog {
+public class ShowLyricsFromTable extends javax.swing.JDialog {
 
-    public ShowLyricsInTable(java.awt.Frame parent, boolean modal, int id, String author, String title, String content) {
+    public ShowLyricsFromTable(java.awt.Frame parent, boolean modal, int id, String author, String title, String content) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
