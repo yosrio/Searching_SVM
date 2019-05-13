@@ -61,9 +61,6 @@ public class Home extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         addFolderDocument = new javax.swing.JLabel();
         addFolderIcon = new javax.swing.JLabel();
-        jPanel8 = new javax.swing.JPanel();
-        showLyrics1 = new javax.swing.JLabel();
-        showLyricsIcon1 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         searchingLyrics = new javax.swing.JLabel();
         searchingIcon = new javax.swing.JLabel();
@@ -153,29 +150,6 @@ public class Home extends javax.swing.JFrame {
         jPanel7.add(addFolderIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 11, -1, -1));
 
         jPanel2.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 220, 50));
-
-        jPanel8.setBackground(new java.awt.Color(102, 176, 228));
-        jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        showLyrics1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        showLyrics1.setForeground(new java.awt.Color(255, 255, 255));
-        showLyrics1.setText("Help?");
-        showLyrics1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                showLyrics1MouseClicked(evt);
-            }
-        });
-        jPanel8.add(showLyrics1, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 11, 150, 26));
-
-        showLyricsIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-help-26.png"))); // NOI18N
-        showLyricsIcon1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                showLyricsIcon1MouseClicked(evt);
-            }
-        });
-        jPanel8.add(showLyricsIcon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 11, -1, -1));
-
-        jPanel2.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 520, 100, 50));
 
         jPanel9.setBackground(new java.awt.Color(197, 239, 247));
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -440,14 +414,6 @@ public class Home extends javax.swing.JFrame {
         show.setVisible(true);
     }//GEN-LAST:event_dokumenTableMouseClicked
 
-    private void showLyrics1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showLyrics1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_showLyrics1MouseClicked
-
-    private void showLyricsIcon1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showLyricsIcon1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_showLyricsIcon1MouseClicked
-
     private void searchingLyricsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchingLyricsMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_searchingLyricsMouseClicked
@@ -508,7 +474,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
@@ -516,9 +481,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel searchingLyrics;
     private javax.swing.JTextField searchingTextField;
     private javax.swing.JLabel showLyrics;
-    private javax.swing.JLabel showLyrics1;
     private javax.swing.JLabel showLyricsIcon;
-    private javax.swing.JLabel showLyricsIcon1;
     // End of variables declaration//GEN-END:variables
 
     public void positionFrame() {
