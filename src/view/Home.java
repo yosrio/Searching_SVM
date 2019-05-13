@@ -31,7 +31,6 @@ public class Home extends javax.swing.JFrame {
         initComponents();
         positionFrame();
         index = new InvertedIndex();
-        index = getIndex();
         loadData();
     }
 
@@ -383,13 +382,15 @@ public class Home extends javax.swing.JFrame {
 
     private void showLyricsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showLyricsMouseClicked
         ShowLyrics show = new ShowLyrics();
-        show.setIndex(index);
+        show.ambil(index);
+        this.dispose();
         show.setVisible(true);
     }//GEN-LAST:event_showLyricsMouseClicked
 
     private void showLyricsIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showLyricsIconMouseClicked
         ShowLyrics show = new ShowLyrics();
-        show.setIndex(index);
+        show.ambil(index);
+        this.dispose();
         show.setVisible(true);
     }//GEN-LAST:event_showLyricsIconMouseClicked
 
@@ -537,5 +538,8 @@ public class Home extends javax.swing.JFrame {
     public void loadData() {
         File dir = new File("F:\\smstr 6\\SearchingSystem\\dokumen");
         index.readDirectory(dir);
+    }
+    public void ambil(InvertedIndex index){
+        this.index = index;
     }
 }

@@ -32,8 +32,7 @@ public class ShowLyrics extends javax.swing.JFrame {
         initComponents();
         positionFrame();
         this.index = new InvertedIndex();
-        index = getIndex();
-        loadData();
+//        loadData();
     }
 
     public InvertedIndex getIndex() {
@@ -388,51 +387,21 @@ public class ShowLyrics extends javax.swing.JFrame {
 
     private void searchingLyricsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchingLyricsMouseClicked
         Home show = new Home();
-        show.setIndex(index);
+        show.ambil(index);
+        this.dispose();
         show.setVisible(true);
     }//GEN-LAST:event_searchingLyricsMouseClicked
 
     private void searchingIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchingIconMouseClicked
         Home show = new Home();
-        show.setIndex(index);
+        show.ambil(index);
+        this.dispose();
         show.setVisible(true);
     }//GEN-LAST:event_searchingIconMouseClicked
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ShowLyrics.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ShowLyrics.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ShowLyrics.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ShowLyrics.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ShowLyrics().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addFileDocument;
@@ -467,6 +436,15 @@ public class ShowLyrics extends javax.swing.JFrame {
         this.setLocation(x, y);
     }
 
+    public void ambil(InvertedIndex index){
+        this.index = index;
+        System.out.println(getIndex().getListOfDocument().get(this.index.getListOfDocument().size()-1).getAuthor());
+        ArrayList<Document> hasilCari = index.getListOfDocument();
+        model = new TableModelData(hasilCari);
+        dokumenTable.setModel(model);
+//        loadData();
+    }
+    
     public void loadData() {
         File dir = new File("F:\\smstr 6\\SearchingSystem\\dokumen");
         index.readDirectory(dir);

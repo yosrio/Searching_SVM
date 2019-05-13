@@ -108,10 +108,10 @@ public class Document implements Comparable<Document> {
         return id - doc.getId();
     }
 
-    @Override
-    public String toString() {
-        return "Document{" + "id=" + id + ", content=" + content + ", realContent=" + realContent + '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Document{" + "id=" + id + ", content=" + content + ", realContent=" + realContent + '}';
+//    }
 
     public ArrayList<Posting> getListofPosting() {
         String tempString[] = getListofTerm();
@@ -153,6 +153,7 @@ public class Document implements Comparable<Document> {
         }
         this.id = idDoc;
         this.content = getAuthor() + " " + getTitle() + "\n" + buffer.toString();
+//        IndonesianStemming();
         this.realContent = buffer.toString();
     }
 
