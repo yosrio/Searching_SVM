@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.StringTokenizer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.CharArraySet;
 import org.apache.lucene.analysis.TokenStream;
@@ -112,7 +115,6 @@ public class Document implements Comparable<Document> {
 //    public String toString() {
 //        return "Document{" + "id=" + id + ", content=" + content + ", realContent=" + realContent + '}';
 //    }
-
     public ArrayList<Posting> getListofPosting() {
         String tempString[] = getListofTerm();
         ArrayList<Posting> result = new ArrayList<Posting>();
@@ -140,10 +142,16 @@ public class Document implements Comparable<Document> {
         char[] chr = new char[4096];
         final StringBuffer buffer = new StringBuffer();
         final FileReader reader = new FileReader(file);
-        String name = file.getName().replace(".txt","");
-        String[] splitter = name.split("-");
-        setAuthor(splitter[0]);
-        setTitle(splitter[1]);
+            String name = file.getName().replace(".txt", "");
+            String[] splitter;
+        try {
+            splitter = name.split("-");
+            setAuthor(splitter[0]);
+            setTitle(splitter[1]);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Nama File Tidak Sesuai! \nNama File Otomatis Dijadikan Nama Author Tanpa Title!");
+        }
+
         try {
             while ((len = reader.read(chr)) > 0) {
                 buffer.append(chr, 0, len);
@@ -153,11 +161,11 @@ public class Document implements Comparable<Document> {
         }
         this.id = idDoc;
         this.content = getAuthor() + " " + getTitle() + "\n" + buffer.toString();
-//        IndonesianStemming();
+        IndonesianStemming();
         this.realContent = buffer.toString();
     }
 
-    public void removeStopWords(){
+    public void removeStopWords() {
         String text = content;
         Version matchVersion = Version.LUCENE_7_7_0;
         Analyzer analyzer = new StandardAnalyzer();
@@ -178,11 +186,11 @@ public class Document implements Comparable<Document> {
         } catch (IOException ex) {
             System.out.println("Exception : " + ex);
         }
-        
+
         content = sb.toString();
     }
-    
-    public void EnglishStemming(){
+
+    public void EnglishStemming() {
         String text = content;
         Version matchVersion = Version.LUCENE_7_7_0;
         Analyzer analyzer = new StandardAnalyzer();
@@ -204,8 +212,8 @@ public class Document implements Comparable<Document> {
         }
         content = sb.toString();
     }
-    
-    public void IndonesianStemming(){
+
+    public void IndonesianStemming() {
         String text = content;
         Version matchVersion = Version.LUCENE_7_7_0;
         Analyzer analyzer = new IndonesianAnalyzer();
