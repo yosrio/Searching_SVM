@@ -18,7 +18,7 @@ import model.SearchingResult;
 public class TableModelDokumen extends AbstractTableModel {
 
     private List<SearchingResult> doc = new ArrayList<SearchingResult>();
-
+    
     public TableModelDokumen(List<SearchingResult> doc) {
         this.doc = doc;
     }

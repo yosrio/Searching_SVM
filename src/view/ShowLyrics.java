@@ -401,7 +401,6 @@ public class ShowLyrics extends javax.swing.JFrame {
 
     public void ambil(InvertedIndex index){
         this.index = index;
-        System.out.println(getIndex().getListOfDocument().get(this.index.getListOfDocument().size()-1).getAuthor());
         ArrayList<Document> hasilCari = index.getListOfDocument();
         model = new TableModelData(hasilCari);
         dokumenTable.setModel(model);
