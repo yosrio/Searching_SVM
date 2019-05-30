@@ -34,7 +34,7 @@ public class tesFileDokumen2 {
 //            File dir = fc.getSelectedFile();
 //            index.readDirectory(dir);
 //        }
-        File dir = new File("F:\\smstr 6\\SearchingSystem\\dokumen");
+        File dir = new File("G:\\smstr 6\\SearchingSystem");
         index.readDirectory(dir);
 //        String tempString = "andmesh";
 //        int result2 = index.getDocFreq(tempString);

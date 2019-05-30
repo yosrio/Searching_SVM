@@ -499,7 +499,7 @@ public class Home extends javax.swing.JFrame {
     }
 
     public void loadData() {
-        File dir = new File("F:\\smstr 6\\SearchingSystem\\dokumen");
+        File dir = new File("dokumen");
         index.readDirectory(dir);
     }
     public void ambil(InvertedIndex index){

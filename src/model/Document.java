@@ -149,7 +149,7 @@ public class Document implements Comparable<Document> {
             setAuthor(splitter[0]);
             setTitle(splitter[1]);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Nama File Tidak Sesuai! \nNama File Otomatis Dijadikan Nama Author Tanpa Title!");
+//            JOptionPane.showMessageDialog(null, "Nama File Tidak Sesuai! \nNama File Otomatis Dijadikan Nama Author Tanpa Title!");
         }
 
         try {

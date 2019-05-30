@@ -271,7 +271,7 @@ public class ShowLyrics extends javax.swing.JFrame {
     }//GEN-LAST:event_exitIconKeyPressed
 
     private void exitIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitIconMouseClicked
-        this.dispose();
+        
         System.exit(0);
     }//GEN-LAST:event_exitIconMouseClicked
 
