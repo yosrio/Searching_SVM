@@ -111,10 +111,6 @@ public class Document implements Comparable<Document> {
         return id - doc.getId();
     }
 
-//    @Override
-//    public String toString() {
-//        return "Document{" + "id=" + id + ", content=" + content + ", realContent=" + realContent + '}';
-//    }
     public ArrayList<Posting> getListofPosting() {
         String tempString[] = getListofTerm();
         ArrayList<Posting> result = new ArrayList<Posting>();
@@ -149,7 +145,35 @@ public class Document implements Comparable<Document> {
             setAuthor(splitter[0]);
             setTitle(splitter[1]);
         } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, "Nama File Tidak Sesuai! \nNama File Otomatis Dijadikan Nama Author Tanpa Title!");
+            
+        }
+
+        try {
+            while ((len = reader.read(chr)) > 0) {
+                buffer.append(chr, 0, len);
+            }
+        } finally {
+            reader.close();
+        }
+        this.id = idDoc;
+        this.content = getAuthor() + " " + getTitle() + "\n" + buffer.toString();
+//        IndonesianStemming();
+        this.realContent = buffer.toString();
+    }
+    
+    public void readFile2(int idDoc, File file) throws FileNotFoundException, IOException {
+        int len;
+        char[] chr = new char[4096];
+        final StringBuffer buffer = new StringBuffer();
+        final FileReader reader = new FileReader(file);
+            String name = file.getName().replace(".txt", "");
+            String[] splitter;
+        try {
+            splitter = name.split("-");
+            setAuthor(splitter[0]);
+            setTitle(splitter[1]);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Nama File Tidak Sesuai! \nNama File Otomatis Dijadikan Nama Author Tanpa Title!");
         }
 
         try {
@@ -187,29 +211,6 @@ public class Document implements Comparable<Document> {
             System.out.println("Exception : " + ex);
         }
 
-        content = sb.toString();
-    }
-
-    public void EnglishStemming() {
-        String text = content;
-        Version matchVersion = Version.LUCENE_7_7_0;
-        Analyzer analyzer = new StandardAnalyzer();
-        analyzer.setVersion(matchVersion);
-
-        TokenStream tokenStream = analyzer.tokenStream("myField", new StringReader(text));
-
-        tokenStream = new PorterStemFilter(tokenStream);
-        StringBuilder sb = new StringBuilder();
-        CharTermAttribute charTermAttribute = tokenStream.addAttribute(CharTermAttribute.class);
-        try {
-            tokenStream.reset();
-            while (tokenStream.incrementToken()) {
-                String term = charTermAttribute.toString();
-                sb.append(term + " ");
-            }
-        } catch (IOException ex) {
-            System.out.println("Exception : " + ex);
-        }
         content = sb.toString();
     }
 

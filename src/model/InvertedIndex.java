@@ -363,7 +363,7 @@ public class InvertedIndex {
         int idDoc = listOfDocument.size() + 1;
         Document doc = new Document();
         try {
-            doc.readFile(idDoc, dir);
+            doc.readFile2(idDoc, dir);
             System.out.println(idDoc);
         } catch (IOException ex) {
             Logger.getLogger(InvertedIndex.class.getName()).log(Level.SEVERE, null, ex);
